@@ -25,6 +25,15 @@ GtBookTrace class >> current [
 	^ Current ifNil: [ Current := self new ]
 ]
 
+{ #category : #'as yet unclassified' }
+GtBookTrace class >> exampleRecordVisitWithFallback [ 
+	<gtExample>
+	| trace |
+	trace := self new.
+	trace recordVisitOfPage: nil fromStep: nil.
+	^ trace entries last asSerialized
+]
+
 { #category : #accessing }
 GtBookTrace class >> finishCurrent [
 	Current ifNotNil: [ Current finishedAt: DateAndTime now ]

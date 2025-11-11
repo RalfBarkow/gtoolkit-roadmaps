@@ -1,9 +1,3 @@
-"
-I am a sequence of TopicMap nodes indicating a path to a  particular node.
-I may also be empty, if the node has been reached *ex nihilo*, without navigating via other nodes.
-
-
-"
 Class {
 	#name : #TMBreadcrumb,
 	#superclass : #Object,
@@ -83,11 +77,6 @@ TMBreadcrumb >> nodes [
 { #category : #accessing }
 TMBreadcrumb >> nodes: anObject [
 	nodes := anObject
-]
-
-{ #category : #testing }
-TMBreadcrumb >> notEmpty [
-	^ self nodes notEmpty
 ]
 
 { #category : #accessing }

@@ -7,14 +7,6 @@ Class {
 	#category : #'GToolkit-Roadmaps-Model'
 }
 
-{ #category : #testing }
-TMAbstractEntity class >> storeOnIsAbstract [
-	^ self
-		classAndMethodFor: #storeOn:
-		do: [ :c :m | m isSubclassResponsibility ]
-		ifAbsent: [ true ]
-]
-
 { #category : #converting }
 TMAbstractEntity >> asElement [
 	^ self roadmap
@@ -106,28 +98,6 @@ TMAbstractEntity >> gtSpotterForPageTitles: aSearch [
 		filterBySubstring
 ]
 
-{ #category : #'as yet unclassified' }
-TMAbstractEntity >> gtStoreStringFor: aView [
-	"Work in progress"
-
-	<gtView>
-	self storeOnIsAbstract ifTrue: [ ^ aView empty ].
-	^ aView explicit
-		title: 'Store on';
-		priority: 70;
-		stencil: [ (GtPharoSnippetCoder new
-				forSource: self storeString;
-				format;
-				subscribeToSystem;
-				asExpandedOnlyElement) vFitContentLimited ];
-		actionButtonIcon: BrGlamorousVectorIcons playinspect
-			tooltip: 'Do it and go'
-			action: [ :button | 
-				button phlow
-					spawnObject: (Smalltalk compiler evaluate: (String streamContents: [ :s | self storeOn: s ])) ];
-		actionUpdateButton
-]
-
 { #category : #views }
 TMAbstractEntity >> gtSummaryFor: aView [
 	<gtView>
@@ -172,11 +142,6 @@ TMAbstractEntity >> helpPageNameDefault [
 { #category : #testing }
 TMAbstractEntity >> isAbstract [
 	^ self == TMAbstractEntity
-]
-
-{ #category : #testing }
-TMAbstractEntity >> isTopicMapEntity [
-	^ true
 ]
 
 { #category : #utility }
@@ -272,16 +237,6 @@ TMAbstractEntity >> sizeAndFirstIfAlone: aCollection [
 { #category : #accessing }
 TMAbstractEntity >> sortedKinds [
 	^ self kindsStandardOrder select: [ :k | self kinds includes: k ]
-]
-
-{ #category : #printing }
-TMAbstractEntity >> storeOn: aStream [
-	self subclassResponsibility
-]
-
-{ #category : #testing }
-TMAbstractEntity >> storeOnIsAbstract [
-	^ self class storeOnIsAbstract
 ]
 
 { #category : #views }

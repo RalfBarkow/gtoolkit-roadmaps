@@ -33,19 +33,6 @@ TMNodeGroup >> = other [
 	^ self nodes asSet = other nodes asSet
 ]
 
-{ #category : #updating }
-TMNodeGroup >> addAll: aNodesCollection [
-	self
-		nodes: (self nodes
-				addAll: aNodesCollection;
-				yourself) copyWithoutDuplicates
-]
-
-{ #category : #updating }
-TMNodeGroup >> addNodeGroup: aNodeGroup [
-	self addAll: aNodeGroup nodes
-]
-
 { #category : #breadcrumbs }
 TMNodeGroup >> breadcrumb [
 	^ TMBreadcrumb for: {}
@@ -112,7 +99,7 @@ TMNodeGroup >> nodes [
 
 { #category : #accessing }
 TMNodeGroup >> nodes: aNodeCollection [
-	nodes := aNodeCollection asOrderedCollection
+	nodes := aNodeCollection
 ]
 
 { #category : #accessing }
@@ -143,7 +130,7 @@ TMNodeGroup >> roadmapNodes [
 
 	| root roadmapNodes |
 	root := self databaseNode.
-	roadmapNodes := (self nodes , self allParents) copyWithoutDuplicates.
+	roadmapNodes := self nodes , self allParents.
 	self breadcrumb isEmpty
 		ifTrue: [ self nodes do: #highlightOn ]
 		ifFalse: [ self highlightBreadcrumbsIn: roadmapNodes ].

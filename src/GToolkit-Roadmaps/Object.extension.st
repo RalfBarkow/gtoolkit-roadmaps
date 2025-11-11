@@ -24,8 +24,3 @@ Object >> isTMPageNode [
 Object >> isTMTreeNode [
 	^ false
 ]
-
-{ #category : #'*GToolkit-Roadmaps' }
-Object >> isTopicMapEntity [
-	^ false
-]

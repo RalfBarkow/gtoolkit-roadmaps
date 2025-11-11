@@ -20,22 +20,13 @@ TMPageNode class >> for: aPage [
 
 { #category : #'instance creation' }
 TMPageNode class >> for: aPage in: aTopicMap [
-	"Use this for testing, particularly if the topic map to use
-	is not necessarily the default one, but a special test map."
+	"Use this for testing if the topic map to use is not necessarily
+	the default one, but a special test map."
 
 	^ self new
 		page: aPage;
 		topicMap: aTopicMap;
 		yourself
-]
-
-{ #category : #'instance creation' }
-TMPageNode class >> forTitle: aPageTitle in: aTopicMap [
-	"Use this for testing, particularly if the topic map to use
-	is not necessarily the default one, but a special test map.
-	Also used for storeOn: so we can lookup the page using the title."
-
-	^ aTopicMap pageNodeWithTitle: aPageTitle
 ]
 
 { #category : #breadcrumbs }
@@ -313,17 +304,6 @@ TMPageNode >> roadmapSimpleNodeElement [
 	^ super roadmapSimpleNodeElement
 		geometry: BlCircleGeometry new;
 		yourself
-]
-
-{ #category : #printing }
-TMPageNode >> storeOn: aStream [
-	<todo: 'Handle case with breadcrumb in pathContext'>
-	aStream
-		nextPut: $(;
-		storeObject: self topicMap;
-		nextPutAll: ' pageNodeWithTitle: ';
-		nextPutAll: self page title printString;
-		nextPut: $)
 ]
 
 { #category : #accessing }

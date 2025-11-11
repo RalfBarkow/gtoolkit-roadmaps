@@ -1,6 +1,3 @@
-"
-A “draft page node” is a node for a new, unmapped page, that is being proposed by, for example, an LLM assistant.
-"
 Class {
 	#name : #TMDraftPageNode,
 	#superclass : #TMPageNode,

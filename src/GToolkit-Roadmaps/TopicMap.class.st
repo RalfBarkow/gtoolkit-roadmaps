@@ -76,14 +76,6 @@ TopicMap class >> llmPackage [
 		packageNamed: 'GToolkit-Roadmaps-LLM'
 ]
 
-{ #category : #comparing }
-TopicMap >> = anObject [
-	super = anObject ifTrue: [ ^ true ].
-	anObject class = self class ifFalse: [ ^ false ].
-
-	^ self jsonFile = anObject jsonFile
-]
-
 { #category : #updating }
 TopicMap >> addDraftPage: aDraftPage [
 	| topicMapPages |
@@ -140,7 +132,7 @@ TopicMap >> database [
 
 { #category : #views }
 TopicMap >> databaseNode [
-	^ TMDatabaseNode for: self database in: self
+	^ TMDatabaseNode for: self database
 ]
 
 { #category : #breadcrumbs }
@@ -355,11 +347,6 @@ TopicMap >> gtWriteJsonActionFor: anAction [
 		action: [  "aButton phlow fireToolUpdateWish.":aButton | aButton phlow spawnObject: self writeJsonFile ]
 ]
 
-{ #category : #comparing }
-TopicMap >> hash [
-	^ self jsonFile hash
-]
-
 { #category : #help }
 TopicMap >> helpPageName [
 	^ 'Topic Map'
@@ -494,15 +481,6 @@ TopicMap >> pages4Topic: aTopic [
 { #category : #accessing }
 TopicMap >> roadmap [
 	^ self databaseNode roadmap
-]
-
-{ #category : #printing }
-TopicMap >> storeOn: aStream [
-	self = TopicMap default
-		ifTrue: [ aStream nextPutAll: '(TopicMap default)' ]
-		ifFalse: [ aStream nextPutAll: '(TopicMap forJson: ('.
-			self jsonFile storeOn: aStream.
-			aStream nextPutAll: '))' ]
 ]
 
 { #category : #views }
